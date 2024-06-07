@@ -1,0 +1,29 @@
+/* write your css here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.form-style {
+    @apply rounded-lg bg-slate-700 p-3 text-base leading-6 text-white shadow-[0_1px_0_0] shadow-white/50 placeholder:text-slate-600 focus:outline-none;
+}
+
+.letter-style {
+    @apply mb-1 text-sm leading-5 text-white
+}
+
+/* .blur-background {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      filter: blur(8px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 30%;
+      height: 100%;
+      z-index: 1;
+    }
+     */
