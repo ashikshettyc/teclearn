@@ -14,3 +14,8 @@ export const courseEndpoints = {
   GET_STUDENTS_COURSE_API: BASE_URL + '/course/studentsCourses',
   GET_ALL_COURSE_API: BASE_URL + '/course/getAllCourses',
 };
+
+export const studentEndPoints = {
+  // GET_ENROLLED_COURSES: BASE_URL + '/course/buyCourse',
+  BUY_COURSES: BASE_URL + '/course/buyCourse',
+};

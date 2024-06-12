@@ -10,7 +10,7 @@
 	"keywords": [
 		"teclearn-backend"
 	],
-	"author": "Shubhanshu Rao",
+	"author": "Ashik",
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^5.1.1",

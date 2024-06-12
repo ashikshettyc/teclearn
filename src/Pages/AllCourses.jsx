@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import CourseCard from "../Components/core/Common/CourseCard"
 import { getAllCourses } from '../services/operations/CourseDetailsAPI'
-import Category, { setAllCourses } from '../slices/Category'
+
 const tabs = [
    "All",
    "Python",
@@ -52,34 +52,37 @@ if (elemtab === "All") {
   <div className="flex gap-5 m-10 mx-auto w-max bg-slate-800 text-slate-200 p-1 rounded-full font-medium drop-shadow-[0_1.5px_rgba(255,255,255,0.25)]">
     {
     tabs.map((elem, index) => {
-      return  <div className={` text-[16px] flex flex-row items-center gap-2 ${
+      return  <div  key={index} className={` text-[16px] flex flex-row items-center gap-2 ${
         elemtab === elem
           ? "bg-slate-900 text-slate-5 font-medium"
           : "text-slate-200"
       } px-7 py-[7px] rounded-full transition-all duration-200 cursor-pointer hover:bg-slate-900 hover:text-slate-5`}
-      key={index}
+    
       onClick={() => setMyCard(elem)}>{elem}</div>
     })
 }
 
 
         </div>
-        <div>
-        <div className="flex gap-8 justify-center flex-wrap w-11/12  text-black lg:mb-0 mb-7 lg:px-0 px-3">
+        
+        <div  className="flex gap-8 justify-center flex-wrap w-11/12  text-black lg:mb-0 mb-7 lg:px-0 px-3">
         {getCategory().map((ele) => {
           return (
-            <CourseCard
-              key={ele.id}
+            <div key={ele.id}>
+             <CourseCard
+             
               cardData={ele}
              
             />
+            </div>
+           
           );
           
         })}
    
       </div>
         </div>
-    </div>
+  
   
   )
 }

@@ -46,6 +46,7 @@ exports.createCourse = async (req, res) => {
       instructor: instructorDetails._id,
       price,
       category,
+      active: false,
       // thumbnail: thumbnailImage.secure_url,
     });
 
@@ -92,6 +93,7 @@ exports.getAllCourses = async (req, res) => {
         category: true,
         studentsEnrolled: true,
         description: true,
+        active: true,
       }
     );
     return res.status(200).json({
@@ -130,6 +132,151 @@ exports.getInstructorCourses = async (req, res) => {
       success: false,
       message: 'Failed to retrieve instructor courses',
       error: error.message,
+    });
+  }
+};
+
+// exports.buyCourses = async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const courseDetailsArray = req.body;
+
+//     console.log('Received course details:', courseDetailsArray); // Debugging statement
+
+//     // Validate each course in the array
+//     for (const courseDetails of courseDetailsArray) {
+//       console.log('Processing course:', courseDetails); // Add this line
+//       const { courseName, description, price, category } = courseDetails;
+//       if (!courseName || !description || !price || !category) {
+//         return res.status(400).json({
+//           success: false,
+//           message: 'Incomplete course details provided',
+//           courseDetails,
+//         });
+//       }
+//     }
+
+//     // Check if the user is a student
+//     const student = await User.findOne({ _id: userId, accountType: 'Student' });
+
+//     if (!student) {
+//       return res.status(404).json({
+//         success: false,
+//         message: 'Student not found or not a student account',
+//       });
+//     }
+
+//     // Create a new course
+//     const newCourse = new Course({
+//       ...courseDetailsArray,
+//       studentsEnroled: [userId],
+//     });
+
+//     const savedCourse = await newCourse.save();
+
+//     // Update the student's courses
+//     const updatedUser = await User.findByIdAndUpdate(
+//       userId,
+//       { $addToSet: { courses: savedCourse._id } }, // Using $addToSet to avoid duplicates
+//       { new: true }
+//     ).populate('courses');
+//     //return resonpse
+//     res.status(200).json({
+//       success: true,
+//       data: updatedUser,
+//       message: 'Course updated Successfully',
+//     });
+//   } catch (error) {
+//     // Handle any errors that occur during the creation of the course
+//     console.error(error);
+//     res.status(500).json({
+//       success: false,
+//       message: 'Failed to add course',
+//       error: error.message,
+//     });
+//   }
+// };
+
+exports.buyCourses = async (req, res) => {
+  //get userId
+  const userId = req.user.id;
+  //get the array of data
+  const courseDetails = req.body;
+
+  //validating the details
+  if (!courseDetails) {
+    return res.status(400).json({
+      success: false,
+      message: 'no details found',
+      courseDetails,
+    });
+  }
+  //for each data send the data to user courses details
+  for (let courseId of courseDetails) {
+    try {
+      const alreadyPresent = await Course.findOne({ studentsEnroled: userId });
+      console.log('they are present', alreadyPresent);
+      if (alreadyPresent) {
+        return res.status(400).json({
+          success: false,
+          message: 'course already present',
+          alreadyPresent,
+        });
+      }
+      const enrolledCourse = await Course.findOneAndUpdate(
+        {
+          _id: courseId,
+        },
+        {
+          $push: { studentsEnroled: userId },
+        },
+        { new: true }
+      );
+
+      console.log('course Updated', enrolledCourse);
+      const enrolledStudent = await User.findByIdAndUpdate(
+        userId,
+        {
+          $push: {
+            courses: courseId,
+          },
+        },
+        { new: true }
+      );
+      console.log('Enrolled student: ', enrolledStudent);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ success: false, error: error.message });
+    }
+  }
+};
+
+exports.studentsCourse = async (req, res) => {
+  try {
+    //get userId
+    const userId = req.user.id;
+    //validate user
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: 'user not present',
+      });
+    }
+    //fetch all courses for that id
+    const studentsCourse = await User.find({ _id: userId })
+      .populate('courses')
+      .exec();
+    console.log(studentsCourse);
+    return res.status(200).json({
+      success: true,
+      message: 'All courses of student retrived',
+      studentsCourse,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      success: false,
+      message: ('cannot retrieve students course', error),
     });
   }
 };

@@ -6,7 +6,6 @@ const coursesSchema = new mongoose.Schema({
   description: { type: String },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
     ref: 'user',
   },
 
@@ -20,6 +19,10 @@ const coursesSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
+  },
+  active: {
+    type: Boolean,
+    default: false,
   },
   studentsEnroled: [
     {

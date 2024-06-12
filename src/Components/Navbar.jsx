@@ -20,6 +20,7 @@ export const NavbarLinks = [
     title: 'Contact Us',
     path: '/contact',
   },
+  
 ];
 
 function Navbar() {
@@ -77,11 +78,20 @@ function Navbar() {
               </button>
             </Link>
           )}
+           {token !== null && (
+            <Link to="/cart">
+              <button className="rounded-[8px] border border-slate-700 bg-slate-800 px-[12px] py-[8px] text-slate-100">
+                Cart
+              </button>
+              
+            </Link>
+          )}
           {token !== null && (
             <Link to="/dashboard">
               <button className="rounded-[8px] border border-slate-700 bg-slate-800 px-[12px] py-[8px] text-slate-100">
                 Dashboard
               </button>
+
             </Link>
           )}
           {token !== null && (

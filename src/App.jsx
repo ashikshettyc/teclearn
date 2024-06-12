@@ -11,6 +11,7 @@ import StudentEnrolled from "./Components/core/Common/Dashboard/StudentEnrolled"
 import AllCourses from "./Pages/AllCourses";
 import Navbar from "./Components/Navbar";
 import AboutUs from "./Pages/AboutUs";
+import Cart from "./Pages/Cart";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/verify-email" element={<VerifyEmail/>}/>
         <Route path="/about" element={<AboutUs/>}/>
         <Route path="/courses" element={<AllCourses/>}/>
+        <Route path="/cart" element={<Cart/>}/>
         <Route path="/dashboard" element={<Dashboard/>}>         
           <Route path="/dashboard/my-courses" element={<Instructor/>}/>
           <Route path="/dashboard/add-course" element={<AddInstructorCourse/>}/>

@@ -3,7 +3,7 @@ import Template from '../Components/core/Template'
 
 function SignUp() {
   return (
-    <div>
+    <div className='flex justify-center'>
         <Template formtype={"signup"}/>
     </div>
   )

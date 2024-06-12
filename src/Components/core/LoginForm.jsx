@@ -30,8 +30,8 @@ setFormData(prev => ({
     className="mt-6 flex w-full flex-col gap-y-4"
   >
     <label className="w-full">
-      <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-        Email Address <sup className="text-pink-200">*</sup>
+      <p className="text-white mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+        Email Address <sup className=" text-red-600">*</sup>
       </p>
       <input
         required
@@ -44,8 +44,8 @@ setFormData(prev => ({
       />
     </label>
     <label className="relative">
-      <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-        Password <sup className="text-pink-200">*</sup>
+      <p className="text-white mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+        Password <sup className="text-red-600">*</sup>
       </p>
       <input
         required
@@ -70,7 +70,7 @@ setFormData(prev => ({
     </label>
     <button
       type="submit"
-      className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+      className="mt-6 rounded-[8px] bg-yellow-500 py-[8px] px-[12px] font-medium text-slate-900"
     >
       Log In
     </button>

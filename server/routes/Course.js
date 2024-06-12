@@ -6,9 +6,9 @@ const router = express.Router();
 const {
   createCourse,
   getAllCourses,
-  getCourseDetails,
-
+  buyCourses,
   getInstructorCourses,
+  studentsCourse,
 } = require('../controllers/Course');
 
 // Importing Middlewares
@@ -24,7 +24,8 @@ router.post('/createCourse', auth, isInstructor, createCourse);
 router.get('/getInstructorCourses', auth, isInstructor, getInstructorCourses);
 // Get all Registered Courses
 router.get('/getAllCourses', getAllCourses);
-// // Get Details for a Specific Courses
-// router.post('/getCourseDetails', getCourseDetails);
 
+router.post('/buyCourse', auth, isStudent, buyCourses);
+
+router.get('/studentsCourse', auth, isStudent, studentsCourse);
 module.exports = router;
