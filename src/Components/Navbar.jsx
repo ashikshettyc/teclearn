@@ -40,7 +40,7 @@ function Navbar() {
       <div className="flex w-11/12 max-w-maxContent items-center justify-between">
         <Link to="/">
           <h1 className="text-white font-bold text-2xl border-2 border-yellow-300 rounded-lg p-1">
-            Ashik<span className="text-yellow-400">Tec</span>
+            Learn<span className="text-yellow-400">Tec</span>
           </h1>
         </Link>
 
