@@ -20,19 +20,19 @@ function AddInstructorCourse() {
   return (
     <>
   
-      <Table className="border rounded-xl border-slate-800">
+      <Table className="border rounded-xl border-slate-800 ">
         <Thead>
-          <Tr className="flex gap-x-10 rounded-t-md border-b border-b-slate-800 px-6 py-2">
-            <Th className="text-left text-sm font-medium uppercase text-slate-300">
+          <Tr className="flex gap-x-10 rounded-t-md border-b border-b-slate-800 py-2">
+            <Th className=" text-sm font-medium uppercase text-slate-300 w-[50%]">
               Courses
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-slate-300">
+            <Th className=" text-sm font-medium uppercase text-slate-300 w-[20%]">
               Duration
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-slate-300">
+            <Th className=" text-sm font-medium uppercase text-slate-300 w-[10%]">
               Price
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-slate-300">
+            <Th className=" text-sm font-medium uppercase text-slate-300 w-[10%]">
               Action
             </Th>
           </Tr>
@@ -48,9 +48,9 @@ function AddInstructorCourse() {
             courses?.map((course) => (
               <Tr
                 key={course._id}
-                className="flex gap-x-10 border-b border-slate-800 px-6 py-8"
+                className="flex gap-x-10 border-b border-slate-800 px-6 items-center justify-center py-8"
               >
-                <Td className="flex flex-1 gap-x-4">
+                <Td className="flex flex-1 gap-x-4 w-[50%]">
                   <img
                     src={course?.thumbnail}
                     alt={course?.courseName}
@@ -61,14 +61,17 @@ function AddInstructorCourse() {
                       {course.courseName}
                     </p>
                     <p className="text-xs text-slate-300">
-                      {course.courseDescription}
+                      {course.description}
                     </p>
                     <p>Created: {course.createdAt}</p>
                   </div>
                 </Td>
-                <Td className="text-sm font-medium text-slate-300">2hr 5min</Td>
-                <Td className="text-sm font-medium text-slate-300">
+                <Td className="text-sm font-medium text-slate-300 w-[20%]">2hr 5min</Td>
+                <Td className="text-sm font-medium text-slate-300 w-[10%]">
                   ${course.price}
+                </Td>
+                <Td className="text-sm font-medium text-slate-300 w-[10%]">
+                 Remove
                 </Td>
               </Tr>
             ))

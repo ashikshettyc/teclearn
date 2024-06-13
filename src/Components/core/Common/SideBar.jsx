@@ -2,6 +2,7 @@ import React from 'react'
 import { ACCOUNT_TYPE } from '../../../utils/constants'
 
 import SidebarLink from './SidebarLink'
+import { useSelector } from 'react-redux'
 
 const sidebar= [
   
@@ -36,7 +37,7 @@ const sidebar= [
   {
     id: 5,
     name: "Cart",
-    path: "/dashboard/cart",
+    path: "/cart",
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscArchive",
   },
@@ -44,11 +45,14 @@ const sidebar= [
 
 
 function SideBar() {
-  // const {user , loading: userLoading} = useSelector(state => state.profile)
+  const {user} = useSelector(state => state.profile)
+  
+const filteredSideBar= sidebar.filter(link => link.type === user.accountType)
   return (
          <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-slate-700 bg-slate-800 py-5 md:py-10">
         <div className="flex flex-col">
-          {sidebar.map((link) => {
+        
+          {filteredSideBar.map((link) => {
             
             // if (link.type && users?.accountType !== link.type) return null
             return (

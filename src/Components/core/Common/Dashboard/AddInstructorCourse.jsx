@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { FiUploadCloud } from 'react-icons/fi';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addCourse } from '../../../../services/operations/CourseDetailsAPI';
-import { setCourses } from '../../../../slices/CourseSlice';
+
 
 function AddInstructorCourse() {
-  const dispatch = useDispatch()
   const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef(null);
   const { token } = useSelector(state => state.auth)
   const {user} = useSelector(state => state.profile)
   const [formData, setFormData] = useState({
@@ -24,25 +22,40 @@ function AddInstructorCourse() {
       [e.target.name]: e.target.value,
     }));
   }
-  const { courseName, description, price, category, thumbnail } = formData;
-  // const onDrop = (acceptedFiles) => {
-  //   const file = acceptedFiles[0];
-  //   if (file) {
-  //     setSelectedFile(file);
-   
-  //   }
-  // };
-  // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+  function onFileChange(e) {
+    setSelectedFile(e.target.files[0]);
+  }
+  const { courseName, description, price, category, thumbnail } = formData;
 
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const newdata = {...formData,user}
-  await addCourse(newdata, token)
+   // Create a new FormData object
+   const data = new FormData();
+   data.append('courseName', formData.courseName);
+   data.append('description', formData.description);
+   data.append('price', formData.price);
+   data.append('category', formData.category);
+   data.append('thumbnail', selectedFile);
+   data.append('user', JSON.stringify(user)); // If you need to send user data as well
+
+   
+  await addCourse(data, token)
 // if (result){
 //   dispatch(setCourses(result))
-  console.log(newdata)
+  console.log(data)
+  setFormData({
+    courseName: '',
+    description: '',
+    price: '',
+    category: '',
+  });
+  setSelectedFile(null);
+  if (fileInputRef.current) {
+    fileInputRef.current.value = '';
+  }
+
 // }
   }
   return (
@@ -116,7 +129,7 @@ function AddInstructorCourse() {
             </div>
           </div> */}
 
-          <input type='file' name="thumbnail" onChange={onChangeHandler} value={thumbnail}/>
+          <input type='file' name="thumbnail" onChange={onFileChange} />
           
         </label>
       </div>

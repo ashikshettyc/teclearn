@@ -12,6 +12,7 @@ import AllCourses from "./Pages/AllCourses";
 import Navbar from "./Components/Navbar";
 import AboutUs from "./Pages/AboutUs";
 import Cart from "./Pages/Cart";
+import ContactUs from "./Pages/ContactUs";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<LogIn/>} />
         <Route path="/verify-email" element={<VerifyEmail/>}/>
         <Route path="/about" element={<AboutUs/>}/>
+        <Route path="/contact-us" element={<ContactUs/>}/>
         <Route path="/courses" element={<AllCourses/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/dashboard" element={<Dashboard/>}>         

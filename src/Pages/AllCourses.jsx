@@ -51,8 +51,8 @@ if (elemtab === "All") {
     <div className='bg-slate-900 flex flex-col pb-12'>
   <div className="flex gap-5 m-10 mx-auto w-max bg-slate-800 text-slate-200 p-1 rounded-full font-medium drop-shadow-[0_1.5px_rgba(255,255,255,0.25)]">
     {
-    tabs.map((elem, index) => {
-      return  <div  key={index} className={` text-[16px] flex flex-row items-center gap-2 ${
+    tabs.map((elem, value) => {
+      return  <div key={value} className={` text-[16px] flex flex-row items-center gap-2 ${
         elemtab === elem
           ? "bg-slate-900 text-slate-5 font-medium"
           : "text-slate-200"

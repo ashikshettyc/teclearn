@@ -12,7 +12,7 @@ exports.createCourse = async (req, res) => {
     // Get all required fields from request body
     let { courseName, description, price, category } = req.body;
     // Get thumbnail image from request files
-    // const thumbnail = req.files.thumbnailImage;
+    const thumbnail = req.files.thumbnail;
     // Check if any of the required fields are missing
     if (!courseName || !description || !price || !category) {
       return res.status(400).json({
@@ -34,11 +34,11 @@ exports.createCourse = async (req, res) => {
     }
 
     // Upload the Thumbnail to Cloudinary
-    // const thumbnailImage = await uploadImageToCloudinary(
-    //   thumbnail,
-    //   process.env.FOLDER_NAME
-    // );
-    // console.log(thumbnailImage);
+    const thumbnailImage = await uploadImageToCloudinary(
+      thumbnail,
+      process.env.FOLDER_NAME
+    );
+    console.log(thumbnailImage);
     // Create a new course with the given details
     const newCourse = await Course.create({
       courseName,
@@ -47,7 +47,7 @@ exports.createCourse = async (req, res) => {
       price,
       category,
       active: false,
-      // thumbnail: thumbnailImage.secure_url,
+      thumbnail: thumbnailImage.secure_url,
     });
 
     // Add the new course to the User Schema of the Instructor
