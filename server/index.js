@@ -64,3 +64,4 @@ app.listen(PORT, () => {
 });
 
 // End of code.
+module.exports = app;
