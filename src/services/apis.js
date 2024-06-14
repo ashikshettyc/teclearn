@@ -1,4 +1,7 @@
 const BASE_URL = 'https://teclearn.onrender.com/api/v1';
+//localhost:3000/Courses
+
+// 'https://teclearn.onrender.com/api/v1' || 'https://localhost:4000/api/v1';
 
 //auth endpoint
 export const endpoints = {

@@ -39,7 +39,7 @@ function Home() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="mt-8 flex flex-row gap-7">
+        <div className=" mt-8 flex flex-row gap-7">
           <CTAButton active={true} linkto={"/signup"}>
             Learn More
           </CTAButton>
@@ -47,25 +47,27 @@ function Home() {
             Book a Demo
           </CTAButton>
         </div>
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-4 ">
+        <div className="mx-auto mb-20 flex flex-col w-11/12 max-w-maxContent items-center justify-center gap-4 ">
 
-        <div className="mb-10 mt-[-100px] flex flex-col justify-center gap-4 lg:mt-20 lg:flex-row lg:gap-0">
+        <div className="md:mb-10 flex flex-col justify-center lg:mt-20 lg:flex-row gap-8">
             <div className="text-4xl font-semibold lg:w-[35%] ">
               Get the skills you need for a{" "}
               <HighlightText text={"job that is in demand."} />
             </div>
-            <div className="flex flex-col items-start gap-10 w-[30%]">
-              <div className="text-[16px]">
+            <div className="flex flex-col items-start text-center gap-10 md:w-[30%] font-semibold pb-10">
+              <div className="text-lg">
                 The modern TecLearn is the dictates its own terms. Today, to
                 be a competitive specialist requires more than professional
                 skills.
               </div>
-              <CTAButton active={true} linkto={"/signup"}>
+              </div>
+             
+            </div>
+            <CTAButton active={true} linkto={"/signup"}>
                 <div className="">Learn More</div>
               </CTAButton>
-            </div>
           </div>
-          </div>
+        
     </div>
     </div>
   )

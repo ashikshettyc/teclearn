@@ -3,7 +3,7 @@ import Samskriti from "../assets/isha samskriti.jpeg"
 function AboutUs() {
   return (
     <div className='w-11/12'>
-            <div className='absolute bg-gradient-to-b from-[#fd1d1dbd] to-blue-600/80 w-96 h-96 blur-[200px] z-0 -top-[30px]  -left-[50px]'></div>
+            <div className=' hidden md:absolute md:bg-gradient-to-b from-[#fd1d1dbd] to-blue-600/80 w-96 h-96 blur-[200px] z-0 -top-[30px]  -left-[50px]'></div>
 
            <section>
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-center text-slate-500">
