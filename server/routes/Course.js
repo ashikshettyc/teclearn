@@ -9,6 +9,7 @@ const {
   buyCourses,
   getInstructorCourses,
   studentsCourse,
+  deleteCourse,
 } = require('../controllers/Course');
 
 // Importing Middlewares
@@ -28,4 +29,5 @@ router.get('/getAllCourses', getAllCourses);
 router.post('/buyCourse', auth, isStudent, buyCourses);
 
 router.get('/studentsCourse', auth, isStudent, studentsCourse);
+router.delete('/deleteCourse', auth, isInstructor, deleteCourse);
 module.exports = router;

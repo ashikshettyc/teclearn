@@ -95,7 +95,7 @@ export function login(email, password, navigate) {
       dispatch(setToken(response.data.token));
       dispatch(setUser({ ...response.data.user }));
       localStorage.setItem('token', JSON.stringify(response.data.token));
-      navigate('/dashboard');
+      navigate('/');
     } catch (error) {
       console.log('LOGIN API ERROR............', error);
       toast.error('Login Failed');

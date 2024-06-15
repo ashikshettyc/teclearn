@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addCourse } from '../../../../services/operations/CourseDetailsAPI';
+import toast from 'react-hot-toast';
 
 
 function AddInstructorCourse() {
@@ -55,6 +56,7 @@ function AddInstructorCourse() {
   if (fileInputRef.current) {
     fileInputRef.current.value = '';
   }
+  toast.success("course created")
 
 // }
   }

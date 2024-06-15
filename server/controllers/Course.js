@@ -280,3 +280,33 @@ exports.studentsCourse = async (req, res) => {
     });
   }
 };
+
+exports.deleteCourse = async (req, res) => {
+  try {
+    const courseDetails = req.body._id;
+    console.log('the id is this one', courseDetails);
+
+    const deleteCourse = await Course.findOneAndDelete({
+      courseDetails,
+    });
+    console.log('this is the course deleted', deleteCourse);
+
+    if (!deleteCourse) {
+      return res.status(400).json({
+        success: false,
+        message: 'course not found to delete',
+        deleteCourse,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: 'course deleted',
+      deleteCourse,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: ('cannot delete course', error),
+    });
+  }
+};

@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tbody, Td, Th, Thead, Tr } from 'react-super-responsive-table';
 import { fetchInstructorCourses } from '../../../../services/operations/CourseDetailsAPI';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCourse } from '../../../../services/operations/CourseDetailsAPI';
 function AddInstructorCourse() {
   const [courses, setCourses] = useState([]);
+  const dispatch = useDispatch()
   const { token } = useSelector((state) => state.auth);
   // const { user } = useSelector((state) => state.profile);
-  useEffect(() => {
-    const datas = async () => {
-      const result = await fetchInstructorCourses(token);
-   
-      if (result) {
-        setCourses(result);
+  const datas = async () => {
+    const result = await fetchInstructorCourses(token);
+ 
+    if (result) {
+      setCourses(result);
 
-      }
-    };
+    }
+  };
+  useEffect(() => {
+   
     datas();
-  },[]);
+  },[token]);
+
+ const handleRemove = async (courseId) =>  {
+    
+    try {
+      console.log(courseId)
+    dispatch(deleteCourse(courseId,token))
+    
+     
+    } catch (error) {
+      console.log(error)
+    }
+   
+  }
   return (
     <>
   
@@ -71,7 +87,7 @@ function AddInstructorCourse() {
                   ${course.price}
                 </Td>
                 <Td className="text-sm font-medium text-slate-300 w-[10%]">
-                 Remove
+                 <p onClick={()=>handleRemove(course._id)}>Remove</p>
                 </Td>
               </Tr>
             ))

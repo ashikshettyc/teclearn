@@ -1,7 +1,8 @@
 const BASE_URL = 'https://teclearn.onrender.com/api/v1';
-//localhost:3000/Courses
 
-// 'https://teclearn.onrender.com/api/v1' || 'https://localhost:4000/api/v1';
+// http://localhost:4000/api/v1
+
+// 'https://teclearn.onrender.com/api/v1' || 'http://localhost:4000/api/v1';
 
 //auth endpoint
 export const endpoints = {
@@ -16,6 +17,7 @@ export const courseEndpoints = {
   CREATE_NEW_COURSE_API: BASE_URL + '/course/createCourse',
   GET_STUDENTS_COURSE_API: BASE_URL + '/course/studentsCourses',
   GET_ALL_COURSE_API: BASE_URL + '/course/getAllCourses',
+  DELETE_COURSE_API: BASE_URL + '/course/deleteCourse',
 };
 
 export const studentEndPoints = {

@@ -5,6 +5,7 @@ const {
   Get_ALL_INSTRUCTOR_COURSES_API,
   CREATE_NEW_COURSE_API,
   GET_ALL_COURSE_API,
+  DELETE_COURSE_API,
 } = courseEndpoints;
 export const fetchInstructorCourses = async (token) => {
   let result = [];
@@ -74,6 +75,28 @@ export const getAllCourses = async (token) => {
     return (result = response?.data?.data);
   } catch (error) {
     console.log('allcourse api error............', error);
+    toast.error(error.message);
+  }
+};
+
+export const deleteCourse = async (data, token) => {
+  try {
+    console.log(data);
+    let response = await apiConnector(
+      'DELETE',
+      DELETE_COURSE_API,
+      { data },
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
+    console.log('course deleted', response);
+
+    if (!response?.data?.success) {
+      throw new Error('Could Not Fetch the file to delete');
+    }
+  } catch (error) {
+    console.log('delete course api error............', error);
     toast.error(error.message);
   }
 };
