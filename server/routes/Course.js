@@ -28,6 +28,6 @@ router.get('/getAllCourses', getAllCourses);
 
 router.post('/buyCourse', auth, isStudent, buyCourses);
 
-router.get('/studentsCourse', auth, isStudent, studentsCourse);
+router.get('/studentsCourse', auth, studentsCourse);
 router.delete('/deleteCourse', auth, isInstructor, deleteCourse);
 module.exports = router;

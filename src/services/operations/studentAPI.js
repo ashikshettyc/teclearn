@@ -2,7 +2,7 @@ import { apiConnector } from '../apiConnector';
 import { toast } from 'react-hot-toast';
 import { studentEndPoints } from '../apis';
 
-const { BUY_COURSES } = studentEndPoints;
+const { BUY_COURSES, ENROLLED_COURSE } = studentEndPoints;
 
 export const buyCourse = async (data, token) => {
   try {
@@ -18,5 +18,18 @@ export const buyCourse = async (data, token) => {
   } catch (error) {
     console.log('buying course api error ', error);
     console.log(error.message, data);
+  }
+};
+
+export const enrolledCourse = async (token) => {
+  try {
+    const response = await apiConnector('GET', ENROLLED_COURSE, null, {
+      Authorization: `Bearer ${token}`,
+    });
+    const result = response?.data.studentsCourse.courses;
+    console.log('what is enrolled', response?.data.studentsCourse.courses);
+    return result;
+  } catch (error) {
+    console.log('cannot fetch enrolled course', error);
   }
 };

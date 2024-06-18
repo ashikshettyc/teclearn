@@ -11,20 +11,7 @@ const CourseCard = ({ cardData }) => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  // // Initialize button state from localStorage on mount
-  // useEffect(() => {
-  //   const storedState = localStorage.getItem(`cartState-${cardData._id}`);
-  //   if (storedState !== null && storedState !== "undefined") {
-  //     setActiveBtn(JSON.parse(storedState));
-  //   } else {
-  //     setActiveBtn(cardData.active || false);
-  //   }
-  // }, [cardData._id, cardData.active]);
 
-  // // Update localStorage whenever activeBtn changes
-  // useEffect(() => {
-  //   localStorage.setItem(`cartState-${cardData._id}`, JSON.stringify(activeBtn));
-  // }, [activeBtn, cardData._id]);
 
   // Check if the item is in the cart
   const isItemInCart = carts.some((item) => item._id === cardData._id);
@@ -32,7 +19,7 @@ const CourseCard = ({ cardData }) => {
   function handleClick() {
     if (token && user.accountType === "Student") {
       navigate("/cart");
-    } else {
+    } else {  
       navigate("/signup");
     }
   }
@@ -52,7 +39,7 @@ const CourseCard = ({ cardData }) => {
   return (
     <div className={`w-[360px] lg:w-66 bg-slate-50 text-richblack-25 h-[480px] box-border cursor-pointer`}>
       <div className="h-60 w-auto object-cover overflow-hidden">
-        <img src={cardData?.thumbnail} alt="thumbnail" />
+        <img src={cardData?.thumbnail} loading="lazy" alt="thumbnail" />
       </div>
       <div className="flex flex-col gap-3 pb-4 p-4 h-40">
         <div className={`font-semibold text-2xl text-zinc-900`}>

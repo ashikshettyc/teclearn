@@ -18,7 +18,8 @@ function Cart() {
 
 
     const buyCourseHandler = async() => {
-      await buyCourse(carts,token)
+      dispatch(buyCourse(carts,token))
+      // dispatch(reset())
     
       navigate("/dashboard/enrolled-courses")
     }

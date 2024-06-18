@@ -2,6 +2,7 @@ const BASE_URL = 'https://teclearn.onrender.com/api/v1';
 
 // http://localhost:4000/api/v1
 
+// FRONTEND_URL= https://teclearn.vercel.app
 // 'https://teclearn.onrender.com/api/v1' || 'http://localhost:4000/api/v1';
 
 //auth endpoint
@@ -23,4 +24,5 @@ export const courseEndpoints = {
 export const studentEndPoints = {
   // GET_ENROLLED_COURSES: BASE_URL + '/course/buyCourse',
   BUY_COURSES: BASE_URL + '/course/buyCourse',
+  ENROLLED_COURSE: BASE_URL + '/course/studentsCourse',
 };

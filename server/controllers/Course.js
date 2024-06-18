@@ -202,7 +202,7 @@ exports.buyCourses = async (req, res) => {
   const userId = req.user.id;
   //get the array of data
   const courseDetails = req.body;
-
+  console.log('the course detail is', courseDetails);
   //validating the details
   if (!courseDetails) {
     return res.status(400).json({
@@ -214,7 +214,7 @@ exports.buyCourses = async (req, res) => {
   //for each data send the data to user courses details
   for (let courseId of courseDetails) {
     try {
-      const alreadyPresent = await Course.findOne({ studentsEnroled: userId });
+      const alreadyPresent = await User.findOne({ _id: courseDetails._id });
       console.log('they are present', alreadyPresent);
       if (alreadyPresent) {
         return res.status(400).json({
@@ -263,9 +263,10 @@ exports.studentsCourse = async (req, res) => {
       });
     }
     //fetch all courses for that id
-    const studentsCourse = await User.find({ _id: userId })
+    const studentsCourse = await User.findById({ _id: userId })
       .populate('courses')
       .exec();
+
     console.log(studentsCourse);
     return res.status(200).json({
       success: true,
