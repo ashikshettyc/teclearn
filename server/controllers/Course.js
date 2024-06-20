@@ -214,7 +214,10 @@ exports.buyCourses = async (req, res) => {
   //for each data send the data to user courses details
   for (let courseId of courseDetails) {
     try {
-      const alreadyPresent = await User.findOne({ _id: courseDetails._id });
+      const alreadyPresent = await User.findOne({
+        _id: userId,
+        courses: courseId,
+      });
       console.log('they are present', alreadyPresent);
       if (alreadyPresent) {
         return res.status(400).json({
@@ -231,7 +234,9 @@ exports.buyCourses = async (req, res) => {
           $push: { studentsEnroled: userId },
         },
         { new: true }
-      );
+      )
+        .populate('studentsEnroled')
+        .exec();
 
       console.log('course Updated', enrolledCourse);
       const enrolledStudent = await User.findByIdAndUpdate(

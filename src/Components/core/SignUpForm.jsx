@@ -43,6 +43,11 @@ function SignUpForm() {
       toast.error('Passwords Do not Match');
       return;
     }
+
+    if (!/^\d{10}$/.test(contactNumber)) {
+      toast.error('Contact number must be 10 digits');
+      return;
+    }
     const signupData = {
       ...formData,
       accountType,
@@ -83,7 +88,7 @@ function SignUpForm() {
     {/* Form */}
     <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4 pb-6">
       <div className="relative flex gap-x-6 w-[100%]">
-        <label>
+        <label className='w-full'>
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-white">
             First Name <sup className="text-pink-200">*</sup>
           </p>
@@ -97,7 +102,7 @@ function SignUpForm() {
             className="form-style w-full"
           />
         </label>
-        <label>
+        <label className='w-full'>
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-white">
             Last Name <sup className="text-pink-200">*</sup>
           </p>
@@ -118,7 +123,7 @@ function SignUpForm() {
         </p>
         <input
           required
-          type="text"
+          type="email"
           name="email"
           value={email}
           onChange={handleOnChange}
@@ -136,7 +141,7 @@ function SignUpForm() {
           name="contactNumber"
           value={contactNumber}
           onChange={handleOnChange}
-          placeholder="Enter COntact number"
+          placeholder="Enter Contact number"
           className="form-style w-full"
         />
       </label>

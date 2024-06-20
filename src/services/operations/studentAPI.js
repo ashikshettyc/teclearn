@@ -1,10 +1,10 @@
 import { apiConnector } from '../apiConnector';
 import { toast } from 'react-hot-toast';
 import { studentEndPoints } from '../apis';
-
+import { reset } from '../../slices/CartSlice';
 const { BUY_COURSES, ENROLLED_COURSE } = studentEndPoints;
 
-export const buyCourse = async (data, token) => {
+export const buyCourse = async (data, token, navigate, dispatch) => {
   try {
     const response = await apiConnector('POST', BUY_COURSES, data, {
       Authorization: `Bearer ${token}`,
@@ -15,6 +15,9 @@ export const buyCourse = async (data, token) => {
     if (!response?.data?.success) {
       throw new Error('Could Not buy course');
     }
+    toast.success('Courses added');
+    dispatch(reset());
+    navigate('/dashboard/enrolled-courses');
   } catch (error) {
     console.log('buying course api error ', error);
     console.log(error.message, data);

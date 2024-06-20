@@ -28,6 +28,7 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
+  const {user} = useSelector(state => state.profile)
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname);
   };
@@ -90,13 +91,12 @@ function Navbar() {
               </button>
             </Link>
           )}
-          {token !== null && (
-            <Link to="/dashboard">
-              <button className="rounded-[8px] border border-slate-700 bg-slate-800 px-[12px] py-[8px] text-slate-100">
-                Dashboard
-              </button>
-            </Link>
-          )}
+           {token !== null && (<Link to="/dashboard">
+                    <button className="rounded-[8px] border border-slate-700 bg-slate-800 px-[12px] py-[8px] text-slate-100">
+                      Dashboard
+                    </button>
+                  </Link>)
+                }
           {token !== null && (
             <Link to="/login">
               <button
@@ -163,13 +163,12 @@ function Navbar() {
                     </button>
                   </Link>
                 )}
-                {token !== null && (
-                  <Link to="/dashboard">
+                {token !== null && (<Link to="/dashboard">
                     <button className="rounded-[8px] border border-slate-700 bg-slate-800 px-[12px] py-[8px] text-slate-100">
                       Dashboard
                     </button>
-                  </Link>
-                )}
+                  </Link>)
+                }
                 {token !== null && (
                   <Link to="/login">
                     <button
@@ -186,6 +185,7 @@ function Navbar() {
             </div>
           )}
         </div>
+      
       </div>
     </div>
   );

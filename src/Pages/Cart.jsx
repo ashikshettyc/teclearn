@@ -17,11 +17,17 @@ function Cart() {
     }, [carts])
 
 
-    const buyCourseHandler = async() => {
-      dispatch(buyCourse(carts,token))
-      // dispatch(reset())
-    
-      navigate("/dashboard/enrolled-courses")
+    const buyCourseHandler =  async() => {
+     
+      try {
+        const result = await buyCourse(carts, token, navigate, dispatch);
+      
+        console.log("the data sending to backend in cart", result)
+       
+      
+      } catch (error) {
+        console.error('Error buying courses:', error);
+      }
     }
   return (
     <div className=" mb-10">
@@ -29,8 +35,8 @@ function Cart() {
         <div className="flex flex-col md:flex-row justify-center max-[1300px] mx-auto gap-x-5">
           {/* Cart Item  */}
           <div className="md:w-[60%] flex flex-col p-2 pb-10">
-            {carts.map((cartItem, index) => (
-              <CartItem item={cartItem} key={cartItem.id} itemIndex={cartItem._id} />
+            {carts.map((cartItem) => (
+              <CartItem item={cartItem} key={cartItem._id} itemIndex={cartItem._id} />
             ))}
           </div>
 
