@@ -9,8 +9,8 @@ const sidebar= [
   {
     id: 1,
     name: "Dashboard",
-    path: "/dashboard/instructor",
-    type: ACCOUNT_TYPE.Instructor,
+    path: "/dashboard",
+    type: ACCOUNT_TYPE.Instructor || ACCOUNT_TYPE.STUDENT,
     icon: "VscDashboard",
   },
   {
@@ -34,13 +34,13 @@ const sidebar= [
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscMortarBoard",
   },
-  {
-    id: 5,
-    name: "Cart",
-    path: "/cart",
-    type: ACCOUNT_TYPE.STUDENT,
-    icon: "VscArchive",
-  },
+  // {
+  //   id: 5,
+  //   name: "Cart",
+  //   path: "/cart",
+  //   type: ACCOUNT_TYPE.STUDENT,
+  //   icon: "VscArchive",
+  // },
 ]
 
 

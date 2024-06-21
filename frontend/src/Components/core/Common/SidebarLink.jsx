@@ -12,14 +12,16 @@ function SidebarLink({link, iconName}) {
     className={`relative px-8 py-2 text-sm font-medium duration-200 transition-all`}
 >
 <span
-        className={`absolute left-0 top-0 h-full w-[0.15rem] bg-yellow-50 ${
-          matchRoute(link.path) ? "opacity-100" : "opacity-0"
+        className={`absolute left-0 top-0 h-full w-[0.15rem] bg-yellow-300 text-yellow-400  ${
+          matchRoute(link.path) ? " opacity-100" : "opacity-0"
         }`}
       ></span>
       <div className="flex items-center gap-x-2">
         {/* Icon Goes Here */}
         {/* <Icon className="text-lg" /> */}
-        <span>{link.name}</span>
+        <span className={`${
+          matchRoute(link.path) ? " text-yellow-400" : ""
+        }`}>{link.name}</span>
       </div>
     </NavLink>
    

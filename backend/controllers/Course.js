@@ -95,7 +95,9 @@ exports.getAllCourses = async (req, res) => {
         description: true,
         active: true,
       }
-    );
+    )
+      .populate('instructor')
+      .exec();
     return res.status(200).json({
       success: true,
       data: allCourses,

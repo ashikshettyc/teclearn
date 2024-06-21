@@ -13,6 +13,8 @@ import Navbar from "./Components/Navbar";
 import AboutUs from "./Pages/AboutUs";
 import Cart from "./Pages/Cart";
 import ContactUs from "./Pages/ContactUs";
+import PrivateRoute from "./Components/PrivateRoute";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   return (
@@ -27,12 +29,15 @@ function App() {
         <Route path="/contact-us" element={<ContactUs/>}/>
         <Route path="/courses" element={<AllCourses/>}/>
         <Route path="/cart" element={<Cart/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}>         
-          <Route path="/dashboard/my-courses" element={<Instructor/>}/>
-          <Route path="/dashboard/add-course" element={<AddInstructorCourse/>}/>
-          <Route path="/dashboard/enrolled-courses" element={<StudentEnrolled/>}/> 
+
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}>         
+        <Route path="/dashboard/my-courses" element={<PrivateRoute><Instructor /></PrivateRoute>} />
+      <Route path="/dashboard/add-course" element={<PrivateRoute><AddInstructorCourse /></PrivateRoute>} />
+      <Route path="/dashboard/enrolled-courses" element={<PrivateRoute><StudentEnrolled /></PrivateRoute>} />
         </Route>
 
+
+<Route path="*" element={<NotFound/>}/>
       </Routes>
     </div>
   );
