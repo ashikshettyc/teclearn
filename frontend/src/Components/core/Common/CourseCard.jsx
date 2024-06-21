@@ -116,7 +116,7 @@ const CourseCard = ({ cardData }) => {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  const alreadyPresent = user.courses.some(courseId => courseId === cardData._id);
+  const alreadyPresent = user?.courses?.some(courseId => courseId === cardData._id);
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="h-48 w-full overflow-hidden">
